@@ -38,8 +38,14 @@ class Integer:
     def __rsub__(self, operand):
         return -self + operand
 
+    def __abs__(self):
+        return abs(self.value)
+
     def __neg__(self):
         return Integer(-self.value)
+
+    def __eq__(self, operand):
+        return isinstance(operand, Integer) and self.value == operand.value
 
     def __repr__(self):
         return '{} (mod {})'.format(self.value, self.prime)
