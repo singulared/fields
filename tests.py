@@ -44,5 +44,15 @@ class IntegerTest(unittest.TestCase):
         a = Integer(7)
         self.assertEqual((-a).value, 2)
 
+    def test_eq(self):
+        a = Integer(7)
+        b = Integer(2)
+        c = Integer(5)
+        self.assertEqual(a, b + c)
+        self.assertEqual(a, a)
+        self.assertNotEqual(a, b)
+        self.assertNotEqual(a, 7)
+
+
 if __name__ == '__main__':
     unittest.main()
