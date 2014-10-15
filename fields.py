@@ -9,15 +9,27 @@ class Integer:
             self.prime = prime
         self.value = value % self.prime
 
-    def __add__(self, operand):
+    def check_operand(self, operand):
         if isinstance(operand, Integer):
-            value = operand.value
+            return operand.value
+        elif isinstance(operand, int):
+            return operand
         else:
-            value = operand
+            return int(operand)
+
+    def __add__(self, operand):
+        value = self.check_operand(operand)
         return Integer(self.value + value, self.prime)
 
     def __radd__(self, operand):
         return self + operand
+
+    def __mul__(self, operand):
+        value = self.check_operand(operand)
+        return Integer(self.value * value, self.prime)
+
+    def __rmul__(self, operand):
+        return self * operand
 
     def __repr__(self):
         return '{} (mod {})'.format(self.value, self.prime)
