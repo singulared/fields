@@ -1,7 +1,8 @@
 from primes import prime as MP
+from numbers import Number
 
 
-class Integer:
+class Field(Number):
     prime = MP
 
     def __init__(self, value, prime=None):
@@ -10,7 +11,7 @@ class Integer:
         self.value = value % self.prime
 
     def check_operand(self, operand):
-        if isinstance(operand, Integer):
+        if isinstance(operand, Field):
             return operand.value
         elif isinstance(operand, int):
             return operand
@@ -19,21 +20,21 @@ class Integer:
 
     def __add__(self, operand):
         value = self.check_operand(operand)
-        return Integer(self.value + value, self.prime)
+        return Field(self.value + value, self.prime)
 
     def __radd__(self, operand):
         return self + operand
 
     def __mul__(self, operand):
         value = self.check_operand(operand)
-        return Integer(self.value * value, self.prime)
+        return Field(self.value * value, self.prime)
 
     def __rmul__(self, operand):
         return self * operand
 
     def __sub__(self, operand):
         value = self.check_operand(operand)
-        return Integer(self.value - value, self.prime)
+        return Field(self.value - value, self.prime)
 
     def __rsub__(self, operand):
         return -self + operand
@@ -42,10 +43,10 @@ class Integer:
         return abs(self.value)
 
     def __neg__(self):
-        return Integer(-self.value)
+        return Field(-self.value)
 
     def __eq__(self, operand):
-        return isinstance(operand, Integer) and self.value == operand.value
+        return isinstance(operand, Field) and self.value == operand.value
 
     def __repr__(self):
         return '{} (mod {})'.format(self.value, self.prime)
