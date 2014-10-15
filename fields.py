@@ -31,5 +31,15 @@ class Integer:
     def __rmul__(self, operand):
         return self * operand
 
+    def __sub__(self, operand):
+        value = self.check_operand(operand)
+        return Integer(self.value - value, self.prime)
+
+    def __rsub__(self, operand):
+        return -self + operand
+
+    def __neg__(self):
+        return Integer(-self.value)
+
     def __repr__(self):
         return '{} (mod {})'.format(self.value, self.prime)
