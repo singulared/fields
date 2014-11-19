@@ -53,6 +53,11 @@ class IntegerTest(unittest.TestCase):
         self.assertNotEqual(a, b)
         self.assertNotEqual(a, 7)
 
+    def test_inverse(self):
+        a = Field(7, 23)
+        self.assertEqual(a.inverse().value, 10)
+        self.assertEqual((a.inverse() * 7).value, 1)
+
 
 if __name__ == '__main__':
     unittest.main()
