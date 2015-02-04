@@ -1,6 +1,5 @@
 import unittest
 from fields import Field, euclid_extended
-from fractions import gcd
 
 
 class IntegerTest(unittest.TestCase):
