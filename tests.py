@@ -1,5 +1,6 @@
 import unittest
-from fields import Field
+from fields import Field, euclid_extended
+from fractions import gcd
 
 
 class IntegerTest(unittest.TestCase):
@@ -44,6 +45,10 @@ class IntegerTest(unittest.TestCase):
         a = Field(7)
         self.assertEqual((-a).value, 2)
 
+    def test_abs(self):
+        a = Field(-7)
+        self.assertEqual(abs(a), 2)
+
     def test_eq(self):
         a = Field(7)
         b = Field(2)
@@ -52,6 +57,12 @@ class IntegerTest(unittest.TestCase):
         self.assertEqual(a, a)
         self.assertNotEqual(a, b)
         self.assertNotEqual(a, 7)
+
+    def test_euclid_extended(self):
+        a = Field(20, 23)
+        b = Field(8, 23)
+        self.assertEqual(euclid_extended(a, b)[2].value, 4)
+        self.assertEqual(euclid_extended(a, 0)[2], a)
 
     def test_inverse(self):
         a = Field(7, 23)

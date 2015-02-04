@@ -88,5 +88,5 @@ class Field(Number):
     def inverse(self):
         x, y, d = euclid_extended(self.value, self.prime)
         if d != 1:
-            raise Exception("Error: p is not prime in %s!" % (self))
+            raise ValueError("Error: p is not prime in %s!" % (self))
         return Field(x, self.prime)
